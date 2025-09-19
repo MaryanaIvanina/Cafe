@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-public class Buttons : MonoBehaviour
+public class Buttons : ObjectManager
 {
-    public GameObject settings;
-    public GameObject recipes;
-    public GameObject shop;
+    private void BuyingObject()
+    {
+        OnShopCloseButtonClick();
+        PutObject(selectedObject);
+        transformMode = true;
+    }
     public void OnPlayButtonClick()
     {         
         SceneManager.LoadScene("Gameplay");
@@ -38,4 +42,40 @@ public class Buttons : MonoBehaviour
     {         
         shop.SetActive(false);
     }
+    public void OnCupBoardCornerClick()
+    {
+        selectedObject = cupBoadCorner;
+        BuyingObject();
+    }
+    public void OnEspressoMachineClick()
+    {
+        selectedObject = espressoMachine;
+        BuyingObject();
+    }
+    public void OnCashRegisterClick()
+    {
+        selectedObject = cashRegister;
+        BuyingObject();
+    }
+    public void OnCupBoardNarrowClick()
+    {
+        selectedObject = cupBoardNarrow;
+        BuyingObject();
+    }
+    public void OnCupBoard01Click()
+    {
+        selectedObject = cupBoard01;
+        BuyingObject();
+    }
+    public void OnCupBoard02Click()
+    {
+        selectedObject = cupBoard02;
+        BuyingObject();
+    }
+    public void OnStoveClick()
+    {
+        selectedObject = stove;
+        BuyingObject();
+    }
 }
+
