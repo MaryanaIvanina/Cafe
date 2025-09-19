@@ -8,7 +8,7 @@ public class Buttons : MonoBehaviour
     public GameObject shop;
     public void OnPlayButtonClick()
     {         
-        SceneManager.LoadScene("Loading");
+        SceneManager.LoadScene("Gameplay");
     }
     public void OnQuitButtonClick()
     {

@@ -19,6 +19,6 @@ public class SceneLoader : MonoBehaviour
         progress += 0.3f * Time.deltaTime;
         loadingSlider.value = progress;
         if (loadingSlider.value >= 1)
-            SceneManager.LoadScene("Gameplay");
+            gameObject.SetActive(false);
     }
 }
