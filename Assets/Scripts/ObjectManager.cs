@@ -21,6 +21,8 @@ public class ObjectManager : MonoBehaviour
     protected bool transformMode;
     protected GameObject selectedObject;
     private GameObject newObj;
+    public int moneyCount;
+    public int price;
 
     public static ObjectManager instance;
     private void Awake()
@@ -41,6 +43,7 @@ public class ObjectManager : MonoBehaviour
         transformMode = false;
         selectedObject = null;
         newObj = null;
+        moneyCount = 400;
     }
     public void Update()
     {

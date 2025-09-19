@@ -6,6 +6,7 @@ public class Buttons : ObjectManager
 {
     private void BuyingObject()
     {
+        moneyCount -= price;
         OnShopCloseButtonClick();
         PutObject(selectedObject);
         transformMode = true;
@@ -45,36 +46,43 @@ public class Buttons : ObjectManager
     public void OnCupBoardCornerClick()
     {
         selectedObject = cupBoadCorner;
+        price = 100;
         BuyingObject();
     }
     public void OnEspressoMachineClick()
     {
         selectedObject = espressoMachine;
+        price = 50;
         BuyingObject();
     }
     public void OnCashRegisterClick()
     {
         selectedObject = cashRegister;
+        price = 50;
         BuyingObject();
     }
     public void OnCupBoardNarrowClick()
     {
         selectedObject = cupBoardNarrow;
+        price = 150;
         BuyingObject();
     }
     public void OnCupBoard01Click()
     {
         selectedObject = cupBoard01;
+        price = 250;
         BuyingObject();
     }
     public void OnCupBoard02Click()
     {
         selectedObject = cupBoard02;
+        price = 300;
         BuyingObject();
     }
     public void OnStoveClick()
     {
         selectedObject = stove;
+        price = 500;
         BuyingObject();
     }
 }
