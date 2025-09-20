@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
-    [Header("UI Panels")]
-    public GameObject settings;
-    public GameObject recipes;
-    public GameObject shop;
-
     [Header("Shop Objects")]
     public GameObject cupBoadCorner;
     public GameObject espressoMachine;
@@ -18,24 +13,16 @@ public class ObjectManager : MonoBehaviour
     public GameObject cupBoard02;
     public GameObject stove;
 
-    protected bool transformMode;
+    public bool transformMode { get; private set; }
     protected GameObject selectedObject;
     private GameObject newObj;
-    public int moneyCount;
-    public int price;
 
     public static ObjectManager instance;
+
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
     }
 
     void Start()
@@ -43,17 +30,18 @@ public class ObjectManager : MonoBehaviour
         transformMode = false;
         selectedObject = null;
         newObj = null;
-        moneyCount = 400;
     }
-    public void Update()
+    void Update()
     {
-        TransformMode(newObj);
+        TransformMode(selectedObject);
+        DisableTransform();
     }
 
     public void PutObject(GameObject obj)
     {
-        Vector3 position = new Vector3(0, 0, 0);
-        Quaternion rotation = Quaternion.Euler(0, 0, 0);
+        Vector3 position;
+        Quaternion rotation;
+
         if (obj != espressoMachine && obj != cashRegister)
         {
             position = new Vector3(0, -1.4f, 0);
@@ -71,11 +59,10 @@ public class ObjectManager : MonoBehaviour
         }
 
         if (obj != null)
-        {
             newObj = Instantiate(obj, position, rotation);
-            obj = null;
-        }
+        EnableTransform(newObj);
     }
+
     public void TransformMode(GameObject selectedObject)
     {
         if (transformMode && selectedObject != null)
@@ -83,13 +70,21 @@ public class ObjectManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
                 selectedObject.transform.position = new Vector3(hit.point.x, selectedObject.transform.position.y, selectedObject.transform.position.z);
-
         }
+    }
+    public void DisableTransform()
+    {
         if (Input.GetMouseButtonDown(0) && transformMode)
         {
-            transformMode = false;
             selectedObject = null;
             newObj = null;
+            transformMode = false;
         }
+    }
+
+    public void EnableTransform(GameObject obj)
+    {
+        selectedObject = obj;
+        transformMode = true;
     }
 }

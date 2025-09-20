@@ -9,6 +9,6 @@ public class MoneyManager : MonoBehaviour
 
     void Update()
     {
-        money.text = "" + ObjectManager.instance.moneyCount.ToString();
+        money.text = ShopManager.instance.moneyCount.ToString();
     }
 }

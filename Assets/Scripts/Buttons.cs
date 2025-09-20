@@ -1,89 +1,86 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-public class Buttons : ObjectManager
+public class Buttons : MonoBehaviour
 {
-    private void BuyingObject()
-    {
-        moneyCount -= price;
-        OnShopCloseButtonClick();
-        PutObject(selectedObject);
-        transformMode = true;
-    }
     public void OnPlayButtonClick()
-    {         
+    {
         SceneManager.LoadScene("Gameplay");
     }
     public void OnQuitButtonClick()
     {
         Application.Quit();
     }
+
     public void OnSettingsButtonClick()
     {
-        settings.SetActive(true);
+        UIManager.instance.settings.SetActive(true);
     }
     public void OnSettingCloseButtonClick()
-    {         
-        settings.SetActive(false);
+    {
+        UIManager.instance.settings.SetActive(false);
     }
+
     public void OnRecipesButtonClick()
     {
-        recipes.SetActive(true);
+        UIManager.instance.recipes.SetActive(true);
     }
     public void OnRecipesCloseButtonClick()
-    {         
-        recipes.SetActive(false);
+    {
+        UIManager.instance.recipes.SetActive(false);
     }
+
     public void OnShopButtonClick()
     {
-        shop.SetActive(true);
+        UIManager.instance.shop.SetActive(true);
     }
     public void OnShopCloseButtonClick()
-    {         
-        shop.SetActive(false);
-    }
-    public void OnCupBoardCornerClick()
     {
-        selectedObject = cupBoadCorner;
-        price = 100;
-        BuyingObject();
+        UIManager.instance.shop.SetActive(false);
     }
-    public void OnEspressoMachineClick()
+
+    public void OnCahRegisterButtonClick()
     {
-        selectedObject = espressoMachine;
-        price = 50;
-        BuyingObject();
+        Camera.main.transform.position = new Vector3(0, 0.6f, -6.2f);
+        UIManager.instance.cashRegisterUI.SetActive(false);
+        UIManager.instance.coffee.SetActive(false);
+        UIManager.instance.cupcakes.SetActive(false);
+        UIManager.instance.coffeeMakingTime.SetActive(false);
     }
-    public void OnCashRegisterClick()
-    {
-        selectedObject = cashRegister;
-        price = 50;
-        BuyingObject();
+
+    public void OnCupBoardCornerClick() 
+    { 
+        ShopManager.instance.price = 100; 
+        ShopManager.instance.Buy(ObjectManager.instance.cupBoadCorner); 
     }
-    public void OnCupBoardNarrowClick()
-    {
-        selectedObject = cupBoardNarrow;
-        price = 150;
-        BuyingObject();
+    public void OnEspressoMachineClick() 
+    { 
+        ShopManager.instance.price = 50; 
+        ShopManager.instance.Buy(ObjectManager.instance.espressoMachine); 
     }
-    public void OnCupBoard01Click()
-    {
-        selectedObject = cupBoard01;
-        price = 250;
-        BuyingObject();
+    public void OnCashRegisterClick() 
+    { 
+        ShopManager.instance.price = 50; 
+        ShopManager.instance.Buy(ObjectManager.instance.cashRegister); 
     }
-    public void OnCupBoard02Click()
-    {
-        selectedObject = cupBoard02;
-        price = 300;
-        BuyingObject();
+    public void OnCupBoardNarrowClick() { 
+        ShopManager.instance.price = 150; 
+        ShopManager.instance.Buy(ObjectManager.instance.cupBoardNarrow); 
     }
-    public void OnStoveClick()
-    {
-        selectedObject = stove;
-        price = 500;
-        BuyingObject();
+    public void OnCupBoard01Click() 
+    { 
+        ShopManager.instance.price = 250;
+        ShopManager.instance.Buy(ObjectManager.instance.cupBoard01); 
+    }
+    public void OnCupBoard02Click() 
+    { ShopManager.instance.price = 300; 
+        ShopManager.instance.Buy(ObjectManager.instance.cupBoard02); 
+    }
+    public void OnStoveClick() 
+    { 
+        ShopManager.instance.price = 500; 
+        ShopManager.instance.Buy(ObjectManager.instance.stove); 
     }
 }
+
 
