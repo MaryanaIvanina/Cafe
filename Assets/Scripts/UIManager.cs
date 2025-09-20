@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject coffeeButton;
     public GameObject sugarButton;
     public GameObject milkButton;
-    public GameObject coffeeMakingTime;
+    public GameObject cookingTime;
 
     public static UIManager instance;
 

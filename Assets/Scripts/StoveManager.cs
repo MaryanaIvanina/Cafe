@@ -2,19 +2,18 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CoffeeMachineManager : Cooking
+public class StoveManager : Cooking
 {
-    [Header("Cups")]
-    public GameObject espressoCup;
-    public GameObject americanoCup;
-    public GameObject latteCup;
-
-    [Header("References")]
+    [Header("Cupscakes")]
+    public GameObject chocolateCupcake;
+    public GameObject cherryCupcake;
+    public GameObject oreoCupcake;
     public Slider cookingTime;
 
     public GameObject firstButton;
     public GameObject secondButton;
     public GameObject thirdButton;
+    public GameObject fourthButton;
 
     public float progress = 0;
     public bool isLoadFinished = false;
@@ -22,6 +21,7 @@ public class CoffeeMachineManager : Cooking
     private CookingUI firstButtonUI;
     private CookingUI secondButtonUI;
     private CookingUI thirdButtonUI;
+    private CookingUI fourthButtonUI;
 
     private float cookingDuration;
 
@@ -30,65 +30,69 @@ public class CoffeeMachineManager : Cooking
         firstButtonUI = firstButton.GetComponent<CookingUI>();
         secondButtonUI = secondButton.GetComponent<CookingUI>();
         thirdButtonUI = thirdButton.GetComponent<CookingUI>();
+        fourthButtonUI = fourthButton.GetComponent<CookingUI>();
     }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && !ObjectManager.instance.transformMode)
         {
-            if (IsMachineSelected("espressoMachine"))
+            if (IsMachineSelected("stove"))
             {
-                Cook(selectedMachine, new Vector3(-0.5f, 0.3f, -1.5f), UIManager.instance.coffee);
+                Cook(selectedMachine, new Vector3(-0.5f, 0.8f, -2.3f), UIManager.instance.cupcakes);
             }
         }
         if (Input.GetMouseButtonDown(0) && !isCooking)
         {
-            if (IsMachineSelected("espressoMachine") && IsValideRecipe())
+            if (IsMachineSelected("stove") && IsValideRecipe())
             {
                 isCooking = true;
-                StartCoroutine(MakeCoffe());
+                StartCoroutine(BackingCupcakes());
             }
-            else if (IsMachineSelected("espressoMachine") && !IsValideRecipe())
+            else if (IsMachineSelected("stove") && !IsValideRecipe())
             {
                 firstButtonUI.isPressed = false;
                 secondButtonUI.isPressed = false;
                 thirdButtonUI.isPressed = false;
+                fourthButtonUI.isPressed = false;
             }
         }
     }
 
-    IEnumerator MakeCoffe()
+    IEnumerator BackingCupcakes()
     {
-        GameObject cup = null;
-        if (!secondButtonUI.isPressed && !thirdButtonUI.isPressed)
+        GameObject cupcake = null;
+        if (firstButtonUI.isPressed && secondButtonUI.isPressed && !thirdButtonUI.isPressed && !fourthButtonUI.isPressed)
         {
-            cup = espressoCup;
-            cookingDuration = 0.9f;
-        }
-        else if (secondButtonUI.isPressed && !thirdButtonUI.isPressed)
-        {
-            cup = americanoCup;
-            cookingDuration = 0.5f;
-        }
-        else if (secondButtonUI.isPressed && thirdButtonUI.isPressed)
-        {
-            cup = latteCup;
+            cupcake = chocolateCupcake;
             cookingDuration = 0.3f;
+        }
+        else if (firstButtonUI.isPressed && !secondButtonUI.isPressed && thirdButtonUI.isPressed && !fourthButtonUI.isPressed)
+        {
+            cupcake = cherryCupcake;
+            cookingDuration = 0.1f;
+        }
+        else if (firstButtonUI.isPressed && !secondButtonUI.isPressed && !thirdButtonUI.isPressed && fourthButtonUI.isPressed)
+        {
+            cupcake = oreoCupcake;
+            cookingDuration = 0.05f;
         }
         else
         {
             firstButtonUI.isPressed = false;
             secondButtonUI.isPressed = false;
             thirdButtonUI.isPressed = false;
+            fourthButtonUI.isPressed = false;
         }
 
         firstButtonUI.isPressed = false;
         secondButtonUI.isPressed = false;
         thirdButtonUI.isPressed = false;
+        fourthButtonUI.isPressed = false;
 
-        if (cup != null)
+        if (cupcake != null)
         {
-            cup.SetActive(true);
-            cup.transform.position = selectedMachine.transform.position;
+            cupcake.SetActive(true);
+            cupcake.transform.position = new Vector3(selectedMachine.transform.position.x, selectedMachine.transform.position.y + 0.6f, selectedMachine.transform.position.z - 0.3f);
         }
 
         progress = 0f;
@@ -103,7 +107,7 @@ public class CoffeeMachineManager : Cooking
         }
 
         UIManager.instance.cookingTime.SetActive(false);
-        cup.SetActive(false);
+        cupcake.SetActive(false);
         isCooking = false;
     }
 
@@ -116,11 +120,11 @@ public class CoffeeMachineManager : Cooking
     }
     private bool IsValideRecipe()
     {
-        if (firstButtonUI.isPressed && !secondButtonUI.isPressed && !thirdButtonUI.isPressed)
+        if (firstButtonUI.isPressed && secondButtonUI.isPressed && !thirdButtonUI.isPressed && !fourthButtonUI.isPressed)
             return true;
-        else if (firstButtonUI.isPressed && secondButtonUI.isPressed && !thirdButtonUI.isPressed)
+        else if (firstButtonUI.isPressed && !secondButtonUI.isPressed && thirdButtonUI.isPressed && !fourthButtonUI.isPressed)
             return true;
-        else if (firstButtonUI.isPressed && secondButtonUI.isPressed && thirdButtonUI.isPressed)
+        else if (firstButtonUI.isPressed && !secondButtonUI.isPressed && !thirdButtonUI.isPressed && fourthButtonUI.isPressed)
             return true;
         return false;
     }

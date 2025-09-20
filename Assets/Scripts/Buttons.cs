@@ -45,7 +45,7 @@ public class Buttons : MonoBehaviour
         UIManager.instance.cashRegisterUI.SetActive(false);
         UIManager.instance.coffee.SetActive(false);
         UIManager.instance.cupcakes.SetActive(false);
-        UIManager.instance.coffeeMakingTime.SetActive(false);
+        UIManager.instance.cookingTime.SetActive(false);
     }
 
     public void OnCupBoardCornerClick() 

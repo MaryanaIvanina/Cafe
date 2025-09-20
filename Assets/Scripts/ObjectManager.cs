@@ -39,27 +39,8 @@ public class ObjectManager : MonoBehaviour
 
     public void PutObject(GameObject obj)
     {
-        Vector3 position;
-        Quaternion rotation;
-
-        if (obj != espressoMachine && obj != cashRegister)
-        {
-            position = new Vector3(0, -1.4f, 0);
-            rotation = Quaternion.Euler(0, 180, 0);
-        }
-        else if (obj == cashRegister)
-        {
-            position = new Vector3(0, 0, -3.7f);
-            rotation = Quaternion.Euler(-90, 0, 90);
-        }
-        else
-        {
-            position = new Vector3(0, 0, 0);
-            rotation = Quaternion.Euler(0, 180, 0);
-        }
-
         if (obj != null)
-            newObj = Instantiate(obj, position, rotation);
+            newObj = Instantiate(obj, obj.transform.position, obj.transform.rotation);
         EnableTransform(newObj);
     }
 

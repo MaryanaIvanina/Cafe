@@ -18,7 +18,7 @@ public abstract class Cooking : MonoBehaviour
     }
     public void Cook(GameObject machine, Vector3 offset, GameObject UI)
     {
-        Camera.main.transform.position = new Vector3 (machine.transform.position.x + offset.x, machine.transform.position.y + offset.y, machine.transform.position.z + offset.z);
+        Camera.main.transform.position = machine.transform.position + offset;
         UI.SetActive(true);
         UIManager.instance.cashRegisterUI.SetActive(true);
     }
