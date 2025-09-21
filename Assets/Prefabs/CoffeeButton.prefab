@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7142313632360587169}
   - component: {fileID: 434070070830743554}
   - component: {fileID: 7797097498110080429}
-  - component: {fileID: 3081160567599255740}
+  - component: {fileID: 3170407152396443823}
   m_Layer: 5
   m_Name: CoffeeButton
   m_TagString: Untagged
@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056423331519919463}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3081160567599255740}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CookingUI, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 1
@@ -134,7 +134,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3081160567599255740
+--- !u!114 &3170407152396443823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,11 +143,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1056423331519919463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2c26fef3a0e58b418eafadc0d6326f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 72335730fd3342946925c6b495a9300e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 67e7d6962ba868540a31a64c82b1ca03, type: 3}
-  pressedSprite: {fileID: 21300000, guid: 19e890891de49594bb4e221551976056, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 19e890891de49594bb4e221551976056, type: 3}
+  isPressed: 0
 --- !u!1 &7897348530188589542
 GameObject:
   m_ObjectHideFlags: 0

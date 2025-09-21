@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CookingUI : MonoBehaviour
 {
     public Sprite defaultSprite;
-    public Sprite pressedSprite;
+    public Sprite selectedSprite;
 
     private Image buttonImage;
     public bool isPressed = false;
@@ -16,21 +16,19 @@ public class CookingUI : MonoBehaviour
         buttonImage = GetComponent<Image>();
         buttonImage.sprite = defaultSprite;
     }
-
     private void Update()
     {
         if (isPressed)
         {
-            buttonImage.sprite = pressedSprite;
+            buttonImage.sprite = selectedSprite;
         }
         else
         {
             buttonImage.sprite = defaultSprite;
         }
     }
-    public void OnButtonClick()
+    public void OnButtonPress()
     {
         isPressed = !isPressed;
     }
 }
-

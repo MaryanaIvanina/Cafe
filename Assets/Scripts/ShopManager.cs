@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    public int moneyCount = 400;
     public int price;
 
     public static ShopManager instance;
@@ -17,7 +16,7 @@ public class ShopManager : MonoBehaviour
 
     public void Buy(GameObject obj)
     {
-        moneyCount -= price;
+        MoneyManager.Instance.SpendMoney(price);
         UIManager.instance.shop.SetActive(false);
         ObjectManager.instance.PutObject(obj);
     }
