@@ -8,6 +8,7 @@ public class MoneyManager : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI shopMoneyText;
 
     [Header("Starting Money")]
     public int startingMoney = 400;
@@ -32,22 +33,20 @@ public class MoneyManager : MonoBehaviour
 
     public void AddMoney(int amount)
     {
+        Debug.Log($"currentMoney {currentMoney}, amount {amount}");
         if (amount < 0) return;
-
         currentMoney += amount;
+        Score.Instance.score++;
         UpdateUI();
     }
 
-    public bool SpendMoney(int amount)
+    public void SpendMoney(int amount)
     {
-        if (amount < 0 || currentMoney < amount)
-        {
-            return false;
-        }
+        if (amount < 0 || currentMoney < amount) return;
 
         currentMoney -= amount;
+        Score.Instance.score++;
         UpdateUI();
-        return true;
     }
 
     private void UpdateUI()
@@ -55,6 +54,7 @@ public class MoneyManager : MonoBehaviour
         if (moneyText != null)
         {
             moneyText.text = currentMoney.ToString();
+            shopMoneyText.text = currentMoney.ToString();
         }
     }
 }

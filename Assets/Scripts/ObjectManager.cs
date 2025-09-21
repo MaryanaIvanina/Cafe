@@ -12,6 +12,19 @@ public class ObjectManager : MonoBehaviour
     public GameObject cupBoard01;
     public GameObject cupBoard02;
     public GameObject stove;
+    public GameObject cupBoarNarrowHiding;
+    public GameObject cupBoar01Hiding;
+    public GameObject cupBoar02Hiding;
+    public GameObject stoveHiding;
+    public GameObject milkButtonHiding;
+    public GameObject latteInMenu;
+    public GameObject cupcakesInMenu;
+    public Dish latte;
+    public Dish chocolateCupcake;
+    public Dish cherryCupcake;
+    public Dish oreoCupcake;
+    public GameObject levelUp;
+    
 
     public bool transformMode { get; private set; }
     protected GameObject selectedObject;

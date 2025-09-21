@@ -5,10 +5,10 @@ public class OrderManager : MonoBehaviour
 {
     public static OrderManager instance;
 
-    public Transform contentParent;         // Content для замовлень
-    public GameObject orderPrefab;          // Prefab кнопки замовлення
+    public Transform contentParent;         
+    public GameObject orderPrefab;          
 
-    public List<Dish> allPossibleDishes;    // Список усіх страв (префаби з Dish.cs)
+    public List<Dish> allPossibleDishes;    
 
     private void Awake()
     {

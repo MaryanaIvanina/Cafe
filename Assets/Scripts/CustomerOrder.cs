@@ -21,15 +21,12 @@ public class CustomerOrder : MonoBehaviour
 
     void OnClick()
     {
-        // ЄДИНЕ МІСЦЕ, де відбувається вся логіка!
         bool hasRequiredItem = InventoryManager.instance.TryFulfillOrder(dish.sellPrice);
 
         if (hasRequiredItem)
         {
-            // Додаємо гроші (тільки тут!)
             MoneyManager.Instance.AddMoney(dish.sellPrice);
 
-            // Завершуємо замовлення
             customer.CompleteOrder();
             Destroy(gameObject);
 
@@ -38,9 +35,6 @@ public class CustomerOrder : MonoBehaviour
         else
         {
             Debug.Log("У інвентарі немає потрібної страви!");
-
-            // Опціонально: можна додати візуальний ефект помилки
-            // Наприклад, трясти кнопку або змінити колір
         }
     }
 

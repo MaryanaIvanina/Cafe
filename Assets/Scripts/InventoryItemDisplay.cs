@@ -10,7 +10,6 @@ public class InventoryItemDisplay : MonoBehaviour
     {
         img = GetComponent<Image>();
 
-        // Вимикаємо можливість взаємодії (якщо є Button, то вимикаємо його)
         Button btn = GetComponent<Button>();
         if (btn != null)
             btn.interactable = false;

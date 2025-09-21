@@ -20,7 +20,6 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(Sprite icon, int sellPrice)
     {
-        // Додаємо дані про айтем
         InventoryItemData newItem = new InventoryItemData
         {
             icon = icon,
@@ -28,7 +27,6 @@ public class InventoryManager : MonoBehaviour
         };
         inventory.Add(newItem);
 
-        // Створюємо UI елемент для відображення
         CreateItemUI(newItem);
     }
 
@@ -50,10 +48,8 @@ public class InventoryManager : MonoBehaviour
         itemUIObjects.Add(go);
     }
 
-    // Єдиний метод для виконання замовлення - забирає айтем і повертає true/false
     public bool TryFulfillOrder(int requiredPrice)
     {
-        // Шукаємо айтем з потрібною ціною
         InventoryItemData foundItem = null;
         GameObject foundUIObject = null;
         int foundIndex = -1;

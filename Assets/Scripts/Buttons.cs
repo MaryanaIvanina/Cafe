@@ -81,6 +81,11 @@ public class Buttons : MonoBehaviour
         ShopManager.instance.price = 500; 
         ShopManager.instance.Buy(ObjectManager.instance.stove); 
     }
+    public void OnNextLevelClick()
+    {
+        ObjectManager.instance.levelUp.SetActive(false);
+        Score.Instance.GoToTheNextLevel();
+    }
 }
 
 
