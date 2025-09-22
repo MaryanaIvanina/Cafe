@@ -12,18 +12,10 @@ public class ObjectManager : MonoBehaviour
     public GameObject cupBoard01;
     public GameObject cupBoard02;
     public GameObject stove;
-    public GameObject cupBoarNarrowHiding;
-    public GameObject cupBoar01Hiding;
-    public GameObject cupBoar02Hiding;
-    public GameObject stoveHiding;
-    public GameObject milkButtonHiding;
-    public GameObject latteInMenu;
-    public GameObject cupcakesInMenu;
     public Dish latte;
     public Dish chocolateCupcake;
     public Dish cherryCupcake;
     public Dish oreoCupcake;
-    public GameObject levelUp;
     
 
     public bool transformMode { get; private set; }
@@ -53,9 +45,14 @@ public class ObjectManager : MonoBehaviour
     public void PutObject(GameObject obj)
     {
         if (obj != null)
+        {
             newObj = Instantiate(obj, obj.transform.position, obj.transform.rotation);
+            Purchasable p = newObj.GetComponent<Purchasable>() ?? newObj.AddComponent<Purchasable>();
+            newObj.name = p.id;
+        }
         EnableTransform(newObj);
     }
+
 
     public void TransformMode(GameObject selectedObject)
     {

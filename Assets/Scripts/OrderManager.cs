@@ -6,7 +6,7 @@ public class OrderManager : MonoBehaviour
     public static OrderManager instance;
 
     public Transform contentParent;         
-    public GameObject orderPrefab;          
+    public GameObject orderPrefab;
 
     public List<Dish> allPossibleDishes;    
 

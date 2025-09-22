@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4728715087399572}
   - component: {fileID: -8800959733388501425}
+  - component: {fileID: -3125621057739616219}
   m_Layer: 0
   m_Name: PW_espressomachine
   m_TagString: espressoMachine
@@ -55,6 +56,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.66289866, y: 0.8136118, z: 1}
   m_Center: {x: 0.035073876, y: 0.40546688, z: 0}
+--- !u!114 &-3125621057739616219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089298806083518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4920184867e8eb94fbd3e625da60c270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: espressoMachine
 --- !u!1 &1673101571683906
 GameObject:
   m_ObjectHideFlags: 0

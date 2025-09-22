@@ -16,8 +16,10 @@ public class ShopManager : MonoBehaviour
 
     public void Buy(GameObject obj)
     {
+        if (MoneyManager.Instance.currentMoney - price < 0) return;
         MoneyManager.Instance.SpendMoney(price);
         UIManager.instance.shop.SetActive(false);
         ObjectManager.instance.PutObject(obj);
+        SaveManager.instance.Save();
     }
 }

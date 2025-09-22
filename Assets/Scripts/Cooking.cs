@@ -25,6 +25,7 @@ public abstract class Cooking : MonoBehaviour
     protected string machineTag;
     protected Vector3 offset;
     protected GameObject cookingUI;
+    private GameObject readyDish = null;
 
     protected float cookingDuration;
     protected virtual void Start()
@@ -39,6 +40,11 @@ public abstract class Cooking : MonoBehaviour
     {
         GoToCook();
         TryToCook();
+        if (InventoryManager.instance.dishCount < 5 && readyDish != null)
+        {
+            FinishCooking(readyDish);
+            readyDish = null;
+        }
     }
     private void GoToCook()
     {
@@ -76,6 +82,7 @@ public abstract class Cooking : MonoBehaviour
         Camera.main.transform.position = machine.transform.position + offset;
         UI.SetActive(true);
         UIManager.instance.cashRegisterUI.SetActive(true);
+        UIManager.instance.shopButton.SetActive(false);
     }
     abstract protected void ReadRecipe();
     protected virtual void DefaultButtons()
@@ -127,8 +134,11 @@ public abstract class Cooking : MonoBehaviour
     protected void FinishCooking(GameObject dish)
     {
         UIManager.instance.cookingTime.SetActive(false);
-
-        // Додати в інвентар, якщо у префабу є Dish
+        if (InventoryManager.instance.dishCount == 5) 
+        {
+            readyDish = dish;
+            return;
+        }
         Dish dishData = dish.GetComponent<Dish>();
         if (dishData != null)
         {
@@ -136,9 +146,9 @@ public abstract class Cooking : MonoBehaviour
                 InventoryManager.instance.AddItem(dishData.icon, dishData.sellPrice);
         }
 
-        // тепер ховаємо/вимикаємо модель страви (як в оригіналі)
         dish.SetActive(false);
         isCooking = false;
+        InventoryManager.instance.dishCount++;
     }
 
 }

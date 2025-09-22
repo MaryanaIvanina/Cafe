@@ -26,15 +26,9 @@ public class CustomerOrder : MonoBehaviour
         if (hasRequiredItem)
         {
             MoneyManager.Instance.AddMoney(dish.sellPrice);
-
+            InventoryManager.instance.dishCount--;
             customer.CompleteOrder();
             Destroy(gameObject);
-
-            Debug.Log($"Замовлення виконано! Отримано {dish.sellPrice} грошей.");
-        }
-        else
-        {
-            Debug.Log("У інвентарі немає потрібної страви!");
         }
     }
 

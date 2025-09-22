@@ -10,33 +10,40 @@ public class Buttons : MonoBehaviour
     public void OnQuitButtonClick()
     {
         Application.Quit();
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
     }
 
     public void OnSettingsButtonClick()
     {
         UIManager.instance.settings.SetActive(true);
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
     }
     public void OnSettingCloseButtonClick()
     {
         UIManager.instance.settings.SetActive(false);
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
     }
 
     public void OnRecipesButtonClick()
     {
         UIManager.instance.recipes.SetActive(true);
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
     }
     public void OnRecipesCloseButtonClick()
     {
         UIManager.instance.recipes.SetActive(false);
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
     }
 
     public void OnShopButtonClick()
     {
         UIManager.instance.shop.SetActive(true);
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
     }
     public void OnShopCloseButtonClick()
     {
         UIManager.instance.shop.SetActive(false);
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
     }
 
     public void OnCahRegisterButtonClick()
@@ -46,6 +53,8 @@ public class Buttons : MonoBehaviour
         UIManager.instance.coffee.SetActive(false);
         UIManager.instance.cupcakes.SetActive(false);
         UIManager.instance.cookingTime.SetActive(false);
+        UIManager.instance.shopButton.SetActive(true);
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
     }
 
     public void OnCupBoardCornerClick() 
@@ -83,8 +92,9 @@ public class Buttons : MonoBehaviour
     }
     public void OnNextLevelClick()
     {
-        ObjectManager.instance.levelUp.SetActive(false);
+        UIManager.instance.levelUp.SetActive(false);
         Score.Instance.GoToTheNextLevel();
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
     }
 }
 

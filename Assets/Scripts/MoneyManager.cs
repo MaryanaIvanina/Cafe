@@ -13,7 +13,7 @@ public class MoneyManager : MonoBehaviour
     [Header("Starting Money")]
     public int startingMoney = 400;
 
-    private int currentMoney;
+    public int currentMoney;
 
     private void Awake()
     {
@@ -33,7 +33,6 @@ public class MoneyManager : MonoBehaviour
 
     public void AddMoney(int amount)
     {
-        Debug.Log($"currentMoney {currentMoney}, amount {amount}");
         if (amount < 0) return;
         currentMoney += amount;
         Score.Instance.score++;
@@ -57,4 +56,10 @@ public class MoneyManager : MonoBehaviour
             shopMoneyText.text = currentMoney.ToString();
         }
     }
+    public void SetMoney(int value)
+    {
+        currentMoney = value;
+        UpdateUI();
+    }
+
 }

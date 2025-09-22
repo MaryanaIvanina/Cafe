@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33343198403694872}
   - component: {fileID: 23274644258697486}
   - component: {fileID: 64412373007002760}
+  - component: {fileID: -130468209367336046}
   m_Layer: 0
   m_Name: PW_cupboard_corner
   m_TagString: Untagged
@@ -106,3 +107,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 113cae18886c34685bb2e705d0a1d64a, type: 3}
+--- !u!114 &-130468209367336046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756629706540644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4920184867e8eb94fbd3e625da60c270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: cupboardCorner

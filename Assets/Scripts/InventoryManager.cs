@@ -6,11 +6,30 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
 
     public Transform contentParent;
-
     public GameObject inventoryItemPrefab;
 
     private List<InventoryItemData> inventory = new List<InventoryItemData>();
     private List<GameObject> itemUIObjects = new List<GameObject>();
+    public List<int> GetInventorySellPrices()
+    {
+        List<int> list = new List<int>();
+        foreach (var item in inventory)
+            list.Add(item.sellPrice);
+        return list;
+    }
+
+    public void ClearInventory()
+    {
+        foreach (var go in itemUIObjects)
+            if (go != null) Destroy(go);
+        itemUIObjects.Clear();
+        inventory.Clear();
+        dishCount = 0;
+    }
+
+
+
+    public int dishCount = 0;
 
     void Awake()
     {
@@ -67,25 +86,21 @@ public class InventoryManager : MonoBehaviour
 
         if (foundItem != null)
         {
-            // Видаляємо айтем з інвентаря
             inventory.RemoveAt(foundIndex);
             itemUIObjects.RemoveAt(foundIndex);
             Destroy(foundUIObject);
 
-            Debug.Log($"Айтем з ціною {requiredPrice} видалено з інвентаря.");
             return true;
         }
 
         return false;
     }
 
-    // Метод для перевірки кількості айтемів (опціонально)
     public int GetItemCount()
     {
         return inventory.Count;
     }
 
-    // Метод для перевірки чи є айтем з певною ціною (опціонально)
     public bool HasItemWithPrice(int price)
     {
         foreach (var item in inventory)

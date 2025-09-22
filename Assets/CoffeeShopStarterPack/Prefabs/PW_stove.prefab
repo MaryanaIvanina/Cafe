@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 4198406258042436}
   - component: {fileID: 3329301451281515225}
   - component: {fileID: 2180494917505713333}
+  - component: {fileID: 7984074936069799975}
   m_Layer: 0
   m_Name: PW_stove
   m_TagString: stove
@@ -185,6 +186,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7984074936069799975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284846768158662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4920184867e8eb94fbd3e625da60c270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: stove
 --- !u!1 &1321277311016920
 GameObject:
   m_ObjectHideFlags: 0

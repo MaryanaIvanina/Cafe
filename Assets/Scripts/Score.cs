@@ -19,8 +19,11 @@ public class Score : MonoBehaviour
     }
     private void Update()
     {
-        if(score == neededScore)
-            ObjectManager.instance.levelUp.SetActive(true);
+        if (score == neededScore)
+        {
+            UIManager.instance.levelUp.SetActive(true);
+            AudioManager.instance.PlaySFX(AudioManager.instance.levelUp);
+        }
     }
     private void UpdateUI()
     {
@@ -31,31 +34,51 @@ public class Score : MonoBehaviour
         level++;
         UpdateUI();
         score = 0;
-        AddLevelFeatures();
+        ApplyLevelState();
     }
-    private void AddLevelFeatures()
+    public void SetScore(int value)
     {
-        if (level == 2)
+        score = value;
+        UpdateUI();
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
+
+    public void SetLevel(int value)
+    {
+        level = value;
+        UpdateUI();
+        ApplyLevelState(); 
+    }
+
+    public void ApplyLevelState()
+    {
+        if (level >= 2)
         {
-            ObjectManager.instance.cupBoarNarrowHiding.SetActive(false);
-            ObjectManager.instance.cupBoar01Hiding.SetActive(false);
-            ObjectManager.instance.milkButtonHiding.SetActive(false);
-            ObjectManager.instance.latteInMenu.SetActive(true);
-            OrderManager.instance.allPossibleDishes.Add(ObjectManager.instance.latte);
-            ObjectManager.instance.milkButtonHiding.SetActive(false);
             MoneyManager.Instance.AddMoney(reward);
+            UIManager.instance.cupBoarNarrowHiding.SetActive(false);
+            UIManager.instance.cupBoar01Hiding.SetActive(false);
+            UIManager.instance.milkButtonHiding.SetActive(false);
+            UIManager.instance.latteInMenu.SetActive(true);
+            OrderManager.instance.allPossibleDishes.Add(ObjectManager.instance.latte);
+
             neededScore = 20;
         }
-        if (level == 3)
+        if (level >= 3)
         {
-            ObjectManager.instance.cupBoar02Hiding.SetActive(false);
-            ObjectManager.instance.stoveHiding.SetActive(false);
-            ObjectManager.instance.cupcakesInMenu.SetActive(true);
+            MoneyManager.Instance.AddMoney(reward*2);
+            UIManager.instance.cupBoar02Hiding.SetActive(false);
+            UIManager.instance.stoveHiding.SetActive(false);
+            UIManager.instance.cupcakesInMenu.SetActive(true);
             OrderManager.instance.allPossibleDishes.Add(ObjectManager.instance.chocolateCupcake);
             OrderManager.instance.allPossibleDishes.Add(ObjectManager.instance.cherryCupcake);
             OrderManager.instance.allPossibleDishes.Add(ObjectManager.instance.oreoCupcake);
-            MoneyManager.Instance.AddMoney(reward * 2);
+
             neededScore = 30;
         }
     }
+
 }
