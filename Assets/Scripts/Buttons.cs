@@ -55,6 +55,7 @@ public class Buttons : MonoBehaviour
         UIManager.instance.cookingTime.SetActive(false);
         UIManager.instance.shopButton.SetActive(true);
         AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
+        ObjectManager.instance.isInTheKitchen = false;
     }
 
     public void OnCupBoardCornerClick() 

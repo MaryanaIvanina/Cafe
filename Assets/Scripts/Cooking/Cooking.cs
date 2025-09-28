@@ -48,7 +48,7 @@ public abstract class Cooking : MonoBehaviour
     }
     private void GoToCook()
     {
-        if (Input.GetMouseButtonDown(0) && !ObjectManager.instance.transformMode)
+        if (Input.GetMouseButtonDown(0) && !ObjectManager.instance.transformMode && !ObjectManager.instance.isInTheKitchen)
             if (IsMachineSelected(machineTag)) Cook(selectedMachine, offset, cookingUI);
     }
     private void TryToCook()
@@ -83,6 +83,7 @@ public abstract class Cooking : MonoBehaviour
         UI.SetActive(true);
         UIManager.instance.cashRegisterUI.SetActive(true);
         UIManager.instance.shopButton.SetActive(false);
+        ObjectManager.instance.isInTheKitchen = true;
     }
     abstract protected void ReadRecipe();
     protected virtual void DefaultButtons()

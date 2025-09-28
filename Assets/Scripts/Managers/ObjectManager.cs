@@ -23,6 +23,7 @@ public class ObjectManager : MonoBehaviour
     protected GameObject selectedObject;
     private GameObject newObj;
     private bool IsTouching;
+    public bool isInTheKitchen { get; set; }
 
     public static ObjectManager instance;
 
@@ -37,6 +38,7 @@ public class ObjectManager : MonoBehaviour
         transformMode = false;
         selectedObject = null;
         newObj = null;
+        isInTheKitchen = false;
     }
     void Update()
     {
