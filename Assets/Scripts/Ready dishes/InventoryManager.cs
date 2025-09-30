@@ -51,11 +51,7 @@ public class InventoryManager : MonoBehaviour
 
     private void CreateItemUI(InventoryItemData itemData)
     {
-        if (inventoryItemPrefab == null || contentParent == null)
-        {
-            Debug.LogWarning("InventoryManager: prefab або contentParent не вказані.");
-            return;
-        }
+        if (inventoryItemPrefab == null || contentParent == null) return;
 
         GameObject go = Instantiate(inventoryItemPrefab, contentParent);
         InventoryItemDisplay itemDisplay = go.GetComponent<InventoryItemDisplay>();

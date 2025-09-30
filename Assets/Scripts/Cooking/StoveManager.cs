@@ -45,12 +45,12 @@ public class StoveManager : Cooking
         base.DefaultButtons();
         fourthButtonUI.isPressed = false;
     }
-    override protected void ShowDish(GameObject dish)
+    override protected void ShowDish(GameObject dish, GameObject machine)
     {
-        base.ShowDish(dish);
-        dish.transform.position = new Vector3(selectedMachine.transform.position.x,
-            selectedMachine.transform.position.y + 0.6f,
-            selectedMachine.transform.position.z - 0.3f);
+        base.ShowDish(dish, machine);
+        dish.transform.position = new Vector3(machine.transform.position.x,
+            machine.transform.position.y + 0.6f,
+            machine.transform.position.z - 0.3f);
     }
     public override void Cook(GameObject machine, Vector3 offset, GameObject ingredientButtons)
     {

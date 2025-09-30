@@ -52,12 +52,12 @@ public class Buttons : MonoBehaviour
         UIManager.instance.cashRegisterUI.SetActive(false);
         UIManager.instance.coffee.SetActive(false);
         UIManager.instance.cupcakes.SetActive(false);
-        UIManager.instance.cookingTime.SetActive(false);
         UIManager.instance.shopButton.SetActive(true);
         AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
         ObjectManager.instance.isInTheKitchen = false;
         UIManager.instance.goToEspressoMachine.SetActive(false);
         UIManager.instance.goToStove.SetActive(false);
+        ObjectManager.instance.selectedMachine.GetComponent<TimerActivator>().cookingTimer.gameObject.SetActive(false);
     }
 
     public void OnCupBoardCornerClick() 

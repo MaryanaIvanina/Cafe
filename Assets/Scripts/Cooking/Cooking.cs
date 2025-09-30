@@ -5,11 +5,7 @@ using UnityEngine.UI;
 
 public abstract class Cooking : MonoBehaviour
 {
-    protected GameObject selectedMachine;
-
     [Header("References")]
-    public Slider cookingTime;
-
     public GameObject firstButton;
     public GameObject secondButton;
     public GameObject thirdButton;
@@ -18,8 +14,6 @@ public abstract class Cooking : MonoBehaviour
     protected CookingUI secondButtonUI;
     protected CookingUI thirdButtonUI;
 
-    private float progress = 0;
-    private bool isLoadFinished = false;
     protected bool isCooking = false;
     private int machineNumber = 0;
     protected GameObject toEspressoMachineButton;
@@ -33,10 +27,10 @@ public abstract class Cooking : MonoBehaviour
     protected List<GameObject> listOfMachines;
     private GameObject readyDish = null;
 
-    protected float cookingDuration;
+    public float cookingDuration;
     protected virtual void Start()
     {
-        selectedMachine = null;
+        ObjectManager.instance.selectedMachine = null;
         firstButtonUI = firstButton.GetComponent<CookingUI>();
         secondButtonUI = secondButton.GetComponent<CookingUI>();
         thirdButtonUI = thirdButton.GetComponent<CookingUI>();
@@ -47,28 +41,26 @@ public abstract class Cooking : MonoBehaviour
     {
         GoToCook();
         TryToCook();
-        if (InventoryManager.instance.dishCount < 5 && readyDish != null)
-        {
-            FinishCooking(readyDish);
-            readyDish = null;
-        }
     }
     private void GoToCook()
     {
         if (Input.GetMouseButtonDown(0) && !ObjectManager.instance.transformMode && !ObjectManager.instance.isInTheKitchen)
-            if (IsMachineSelected(machineTag)) Cook(selectedMachine, offset, cookingUI);
+            if (IsMachineSelected(machineTag)) Cook(ObjectManager.instance.selectedMachine, offset, cookingUI);
     }
     private void TryToCook()
     {
-        if (Input.GetMouseButtonDown(0) && !isCooking)
+        if (ObjectManager.instance.selectedMachine != null)
         {
-            if (IsRightMachine(selectedMachine) && IsValidRecipe())
+            if (Input.GetMouseButtonDown(0) && !ObjectManager.instance.selectedMachine.GetComponent<IsBusy>().isBusy)
             {
-                isCooking = true;
-                ReadRecipe();
+                if (IsRightMachine(ObjectManager.instance.selectedMachine) && IsValidRecipe())
+                {
+                    ObjectManager.instance.selectedMachine.GetComponent<IsBusy>().isBusy = true;
+                    ReadRecipe();
+                }
+                else if (IsRightMachine(ObjectManager.instance.selectedMachine) && !IsValidRecipe())
+                    DefaultButtons();
             }
-            else if (IsRightMachine(selectedMachine) && !IsValidRecipe())
-                DefaultButtons();
         }
     }
     private bool IsRightMachine(GameObject rightMachine)
@@ -88,7 +80,7 @@ public abstract class Cooking : MonoBehaviour
         {
             if (hit.transform.CompareTag(machineTag))
             {
-                selectedMachine = hit.transform.gameObject;
+                ObjectManager.instance.selectedMachine = hit.transform.gameObject;
                 return true;
             }
         }
@@ -101,7 +93,8 @@ public abstract class Cooking : MonoBehaviour
         UIManager.instance.cashRegisterUI.SetActive(true);
         UIManager.instance.shopButton.SetActive(false);
         ObjectManager.instance.isInTheKitchen = true;
-        isCooking = selectedMachine.GetComponent<IsBusy>().isBusy;
+        if (ObjectManager.instance.selectedMachine.GetComponent<IsBusy>().isBusy) 
+            ObjectManager.instance.selectedMachine.GetComponent<TimerActivator>().cookingTimer.gameObject.SetActive(true);
     }
     abstract protected void ReadRecipe();
     protected virtual void DefaultButtons()
@@ -113,46 +106,38 @@ public abstract class Cooking : MonoBehaviour
     protected abstract bool IsValidRecipe();
     protected void CookDish(GameObject dish, float cookingDuration)
     {
-        ShowDish(dish);
-        StartCooking();
-        StartCoroutine(CookingProcess(dish, cookingDuration));
+        var machine = ObjectManager.instance.selectedMachine;
+        ShowDish(dish, machine);
+        StartCooking(machine);
+        StartCoroutine(CookingProcess(dish, cookingDuration, machine));
     }
-    private IEnumerator CookingProcess(GameObject dish, float cookingDuration)
+    private IEnumerator CookingProcess(GameObject dish, float cookingDuration, GameObject machine)
     {
-        yield return StartCoroutine(Cook(cookingDuration));
-        FinishCooking(dish);
+        yield return StartCoroutine(Cook(cookingDuration, machine));
+        FinishCooking(dish, machine);
     }
 
-    protected virtual void ShowDish(GameObject dish)
+    protected virtual void ShowDish(GameObject dish, GameObject machine)
     {
         dish.SetActive(true);
-        dish.transform.position = new Vector3(selectedMachine.transform.position.x, selectedMachine.transform.position.y + 0.6f, selectedMachine.transform.position.z - 0.3f);
+        dish.transform.position = new Vector3(machine.transform.position.x, machine.transform.position.y + 0.6f, machine.transform.position.z - 0.3f);
     }
-    protected void StartCooking()
+    protected void StartCooking(GameObject machine)
     {
-        progress = 0f;
-        cookingTime.value = 0;
-        isLoadFinished = false;
-        UIManager.instance.cookingTime.SetActive(true);
+        machine.GetComponent<TimerActivator>().cookingTimer.gameObject.SetActive(true);
+        machine.GetComponent<TimerActivator>().cookingTimer.GetReady();
     }
-    IEnumerator Cook(float cookingDuration)
+    IEnumerator Cook(float cookingDuration, GameObject machine)
     {
-        while (!isLoadFinished)
+        while (!machine.GetComponent<TimerActivator>().cookingTimer.isLoadFinished)
         {
-            LoadSlider(cookingDuration);
+            machine.GetComponent<TimerActivator>().cookingTimer.StartTheTimer(cookingDuration);
             yield return null;
         }
     }
-    protected void LoadSlider(float cookingDuration)
+    protected void FinishCooking(GameObject dish, GameObject machine)
     {
-        progress += cookingDuration * Time.deltaTime;
-        cookingTime.value = progress;
-        if (cookingTime.value >= 1)
-            isLoadFinished = true;
-    }
-    protected void FinishCooking(GameObject dish)
-    {
-        UIManager.instance.cookingTime.SetActive(false);
+        machine.GetComponent<TimerActivator>().cookingTimer.gameObject.SetActive(false);
         if (InventoryManager.instance.dishCount == 5) 
         {
             readyDish = dish;
@@ -164,9 +149,9 @@ public abstract class Cooking : MonoBehaviour
             if (InventoryManager.instance != null)
                 InventoryManager.instance.AddItem(dishData.icon, dishData.sellPrice);
         }
-
+        readyDish = null;
         dish.SetActive(false);
-        isCooking = false;
+        machine.GetComponent<IsBusy>().isBusy = false;
         InventoryManager.instance.dishCount++;
     }
     public void OnExitRegimeButtonCkick()
@@ -176,8 +161,8 @@ public abstract class Cooking : MonoBehaviour
         if (machineNumber >= listOfMachines.Count)
             machineNumber = 0;
 
-        selectedMachine = listOfMachines[machineNumber];
-        Cook(selectedMachine, offset, cookingUI);
+        ObjectManager.instance.selectedMachine = listOfMachines[machineNumber];
+        Cook(ObjectManager.instance.selectedMachine, offset, cookingUI);
 
         machineNumber++;
     }

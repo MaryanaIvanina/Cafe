@@ -33,10 +33,10 @@ public class CoffeeMachineManager : Cooking
         else if (firstButtonUI.isPressed && secondButtonUI.isPressed && thirdButtonUI.isPressed) return true;
         return false;
     }
-    override protected void ShowDish(GameObject dish)
+    override protected void ShowDish(GameObject dish, GameObject machine)
     {
-        base.ShowDish(dish);
-        dish.transform.position = selectedMachine.transform.position;
+        base.ShowDish(dish, machine);
+        dish.transform.position = machine.transform.position;
     }
     public override void Cook(GameObject machine, Vector3 offset, GameObject ingredientButtons)
     {

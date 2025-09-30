@@ -17,6 +17,7 @@ public class ObjectManager : MonoBehaviour
     public Dish chocolateCupcake;
     public Dish cherryCupcake;
     public Dish oreoCupcake;
+    public GameObject selectedMachine;
 
     public List<GameObject> espressoMachines;
     public List<GameObject> stoves;
