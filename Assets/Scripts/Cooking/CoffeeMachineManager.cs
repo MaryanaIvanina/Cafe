@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +15,7 @@ public class CoffeeMachineManager : Cooking
         machineTag = "espressoMachine";
         offset = new Vector3(-0.5f, 0.3f, -1.5f);
         cookingUI = UIManager.instance.coffee;
+        listOfMachines = ObjectManager.instance.espressoMachines;
     }
 
     override protected void ReadRecipe()
@@ -37,6 +37,23 @@ public class CoffeeMachineManager : Cooking
     {
         base.ShowDish(dish);
         dish.transform.position = selectedMachine.transform.position;
+    }
+    public override void Cook(GameObject machine, Vector3 offset, GameObject ingredientButtons)
+    {
+        base.Cook(machine, offset, ingredientButtons);
+        if (Score.Instance.level >= 4 && GameObject.FindGameObjectWithTag("stove") != null) toStoveButton.SetActive(true);
+        if (listOfMachines.Count > 1)
+        {
+            toEspressoMachineButton.SetActive(true);
+            toEspressoMachineButton.GetComponent<RectTransform>().anchoredPosition = firstButtonPos;
+            if (Score.Instance.level >= 4 && GameObject.FindGameObjectWithTag("stove") != null)
+                toStoveButton.GetComponent<RectTransform>().anchoredPosition = secondButtonPos;
+        }
+        else
+        {
+            if (Score.Instance.level >= 4 && GameObject.FindGameObjectWithTag("stove") != null)
+                toStoveButton.GetComponent<RectTransform>().anchoredPosition = firstButtonPos;
+        }
     }
 }
 

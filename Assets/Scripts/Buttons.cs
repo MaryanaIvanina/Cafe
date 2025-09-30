@@ -56,6 +56,8 @@ public class Buttons : MonoBehaviour
         UIManager.instance.shopButton.SetActive(true);
         AudioManager.instance.PlaySFX(AudioManager.instance.buttonClick);
         ObjectManager.instance.isInTheKitchen = false;
+        UIManager.instance.goToEspressoMachine.SetActive(false);
+        UIManager.instance.goToStove.SetActive(false);
     }
 
     public void OnCupBoardCornerClick() 

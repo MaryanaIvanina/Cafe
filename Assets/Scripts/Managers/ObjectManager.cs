@@ -17,7 +17,9 @@ public class ObjectManager : MonoBehaviour
     public Dish chocolateCupcake;
     public Dish cherryCupcake;
     public Dish oreoCupcake;
-    
+
+    public List<GameObject> espressoMachines;
+    public List<GameObject> stoves;
 
     public bool transformMode { get; private set; }
     protected GameObject selectedObject;
@@ -35,6 +37,12 @@ public class ObjectManager : MonoBehaviour
 
     void Start()
     {
+        GameObject[] coffeeMachines = GameObject.FindGameObjectsWithTag("espressoMachine");
+        foreach (GameObject machine in coffeeMachines)
+            espressoMachines.Add(machine);
+        GameObject[] cookingStoves = GameObject.FindGameObjectsWithTag("stove");
+        foreach (GameObject stove in cookingStoves)
+            stoves.Add(stove);
         transformMode = false;
         selectedObject = null;
         newObj = null;
@@ -53,6 +61,8 @@ public class ObjectManager : MonoBehaviour
             newObj = Instantiate(obj, obj.transform.position, obj.transform.rotation);
             Purchasable p = newObj.GetComponent<Purchasable>() ?? newObj.AddComponent<Purchasable>();
             newObj.name = p.id;
+            if (newObj.CompareTag("espressoMachine")) espressoMachines.Add(newObj);
+            if (newObj.CompareTag("stove")) stoves.Add(newObj);
         }
         EnableTransform(newObj);
     }

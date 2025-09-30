@@ -9,6 +9,10 @@ public class TouchingObjects : MonoBehaviour
     {
         isTouching = true;
     }
+    public void OnTriggerStay(Collider other)
+    {
+        isTouching = true;
+    }
     public void OnTriggerExit(Collider other)
     {
         isTouching = false;

@@ -19,6 +19,7 @@ public class StoveManager : Cooking
         machineTag = "stove";
         offset = new Vector3(-0.5f, 0.8f, -2.3f);
         cookingUI = UIManager.instance.cupcakes;
+        listOfMachines = ObjectManager.instance.stoves;
     }
 
     override protected void ReadRecipe()
@@ -50,5 +51,16 @@ public class StoveManager : Cooking
         dish.transform.position = new Vector3(selectedMachine.transform.position.x,
             selectedMachine.transform.position.y + 0.6f,
             selectedMachine.transform.position.z - 0.3f);
+    }
+    public override void Cook(GameObject machine, Vector3 offset, GameObject ingredientButtons)
+    {
+        base.Cook(machine, offset, ingredientButtons);
+        toEspressoMachineButton.SetActive(true);
+        toEspressoMachineButton.GetComponent<RectTransform>().anchoredPosition = firstButtonPos;
+        if (listOfMachines.Count > 1)
+        {
+            toStoveButton.SetActive(true);
+            toStoveButton.GetComponent<RectTransform>().anchoredPosition = secondButtonPos;
+        }
     }
 }

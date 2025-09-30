@@ -21,20 +21,27 @@ public abstract class Cooking : MonoBehaviour
     private float progress = 0;
     private bool isLoadFinished = false;
     protected bool isCooking = false;
+    private int machineNumber = 0;
+    protected GameObject toEspressoMachineButton;
+    protected GameObject toStoveButton;
+    protected Vector3 firstButtonPos = new Vector2 (-100, -150);
+    protected Vector3 secondButtonPos = new Vector2(-300, -250);
 
     protected string machineTag;
     protected Vector3 offset;
     protected GameObject cookingUI;
+    protected List<GameObject> listOfMachines;
     private GameObject readyDish = null;
 
     protected float cookingDuration;
     protected virtual void Start()
     {
         selectedMachine = null;
-
         firstButtonUI = firstButton.GetComponent<CookingUI>();
         secondButtonUI = secondButton.GetComponent<CookingUI>();
         thirdButtonUI = thirdButton.GetComponent<CookingUI>();
+        toEspressoMachineButton = UIManager.instance.goToEspressoMachine;
+        toStoveButton = UIManager.instance.goToStove;
     }
     protected virtual void Update()
     {
@@ -55,14 +62,24 @@ public abstract class Cooking : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !isCooking)
         {
-            if (IsMachineSelected(machineTag) && IsValidRecipe())
+            if (IsRightMachine(selectedMachine) && IsValidRecipe())
             {
                 isCooking = true;
                 ReadRecipe();
             }
-            else if (IsMachineSelected(machineTag) && !IsValidRecipe())
+            else if (IsRightMachine(selectedMachine) && !IsValidRecipe())
                 DefaultButtons();
         }
+    }
+    private bool IsRightMachine(GameObject rightMachine)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            if (hit.transform.gameObject == rightMachine)
+                return true;
+        }
+        return false;
     }
     protected bool IsMachineSelected(string machineTag)
     {
@@ -77,13 +94,14 @@ public abstract class Cooking : MonoBehaviour
         }
         return false;
     }
-    public void Cook(GameObject machine, Vector3 offset, GameObject UI)
+    public virtual void Cook(GameObject machine, Vector3 offset, GameObject ingredientButtons)
     {
         Camera.main.transform.position = machine.transform.position + offset;
-        UI.SetActive(true);
+        ingredientButtons.SetActive(true);
         UIManager.instance.cashRegisterUI.SetActive(true);
         UIManager.instance.shopButton.SetActive(false);
         ObjectManager.instance.isInTheKitchen = true;
+        isCooking = selectedMachine.GetComponent<IsBusy>().isBusy;
     }
     abstract protected void ReadRecipe();
     protected virtual void DefaultButtons()
@@ -150,6 +168,18 @@ public abstract class Cooking : MonoBehaviour
         dish.SetActive(false);
         isCooking = false;
         InventoryManager.instance.dishCount++;
+    }
+    public void OnExitRegimeButtonCkick()
+    {
+        if (listOfMachines.Count == 0) return;
+
+        if (machineNumber >= listOfMachines.Count)
+            machineNumber = 0;
+
+        selectedMachine = listOfMachines[machineNumber];
+        Cook(selectedMachine, offset, cookingUI);
+
+        machineNumber++;
     }
 
 }

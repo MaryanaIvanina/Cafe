@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    private Dish requestedDish; // що хоче клієнт
+    private Dish requestedDish;
 
     void Start()
     {

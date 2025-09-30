@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
     public GameObject latteInMenu;
     public GameObject cupcakesInMenu;
     public GameObject levelUp;
+    public GameObject goToStove;
+    public GameObject goToEspressoMachine;
 
     public static UIManager instance;
 
