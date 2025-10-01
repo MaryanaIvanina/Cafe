@@ -8,8 +8,8 @@ public class Score : MonoBehaviour
 {
     public TextMeshProUGUI levelNumber;
     public int score = 0;
-    private int neededScore = 2;
-    public int level = 3;
+    private int neededScore = 10;
+    public int level = 1;
     private int reward = 100;
     public static Score Instance;
     private void Awake()
@@ -64,8 +64,9 @@ public class Score : MonoBehaviour
             UIManager.instance.milkButtonHiding.SetActive(false);
             UIManager.instance.latteInMenu.SetActive(true);
             OrderManager.instance.allPossibleDishes.Add(ObjectManager.instance.latte);
+            CustomerSpawner.instance.spawnInterval = 5f;
 
-            neededScore = 2;
+            neededScore = 20;
         }
         if (level >= 3)
         {
@@ -76,8 +77,14 @@ public class Score : MonoBehaviour
             OrderManager.instance.allPossibleDishes.Add(ObjectManager.instance.chocolateCupcake);
             OrderManager.instance.allPossibleDishes.Add(ObjectManager.instance.cherryCupcake);
             OrderManager.instance.allPossibleDishes.Add(ObjectManager.instance.oreoCupcake);
+            CustomerSpawner.instance.spawnInterval = 10f;
 
-            neededScore = 3;
+            neededScore = 30;
+        }
+        if (level >= 4)
+        {
+            UIManager.instance.stoveHiding.SetActive(false);
+            CustomerSpawner.instance.spawnInterval = 7f;
         }
     }
 

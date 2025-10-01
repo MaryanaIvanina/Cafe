@@ -7,6 +7,7 @@ TagManager:
   - Fluid
   - espressoMachine
   - stove
+  - cashRegister
   layers:
   - Default
   - TransparentFX

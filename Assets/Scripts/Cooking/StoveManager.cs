@@ -55,12 +55,15 @@ public class StoveManager : Cooking
     public override void Cook(GameObject machine, Vector3 offset, GameObject ingredientButtons)
     {
         base.Cook(machine, offset, ingredientButtons);
-        toEspressoMachineButton.SetActive(true);
-        toEspressoMachineButton.GetComponent<RectTransform>().anchoredPosition = firstButtonPos;
-        if (listOfMachines.Count > 1)
+        if (Score.Instance.level >= 4)
         {
-            toStoveButton.SetActive(true);
-            toStoveButton.GetComponent<RectTransform>().anchoredPosition = secondButtonPos;
+            toEspressoMachineButton.SetActive(true);
+            toEspressoMachineButton.GetComponent<RectTransform>().anchoredPosition = firstButtonPos;
+            if (listOfMachines.Count > 1)
+            {
+                toStoveButton.SetActive(true);
+                toStoveButton.GetComponent<RectTransform>().anchoredPosition = secondButtonPos;
+            }
         }
     }
 }

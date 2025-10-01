@@ -5800,17 +5800,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611667708}
   m_CullTransparentMesh: 1
---- !u!114 &613651989 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1763520543382861345, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-  m_PrefabInstance: {fileID: 1055557296}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &616395425
 GameObject:
   m_ObjectHideFlags: 0
@@ -6232,7 +6221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelNumber: {fileID: 1003766146}
   score: 0
-  level: 3
+  level: 1
 --- !u!4 &663259274
 Transform:
   m_ObjectHideFlags: 0
@@ -8347,10 +8336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8881dc78c8e544594d387b74cb09e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cookingTime: {fileID: 613651989}
   firstButton: {fileID: 684710914}
   secondButton: {fileID: 453271008}
   thirdButton: {fileID: 497016597}
+  cookingDuration: 0
   espressoCup: {fileID: 363652964}
   americanoCup: {fileID: 1486322960}
   latteCup: {fileID: 974524966}
@@ -9892,7 +9881,7 @@ Transform:
   m_GameObject: {fileID: 1029078829}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.74, y: -2.07, z: -4.55}
+  m_LocalPosition: {x: 1.13, y: -1.56, z: -4.55}
   m_LocalScale: {x: 1.52, y: 1.52, z: 1.52}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10245,93 +10234,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046262854}
   m_CullTransparentMesh: 1
---- !u!1001 &1055557296
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 222235158349171521, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 222235158349171521, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 222235158349171521, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 222235158349171521, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 222235158349171521, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 222235158349171521, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 222235158349171521, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 222235158349171521, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 222235158349171521, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 222235158349171521, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728219247381971619, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_Name
-      value: CookingTime
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728219247381971619, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5657727630464155321, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 770
-      objectReference: {fileID: 0}
-    - target: {fileID: 5657727630464155321, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -300
-      objectReference: {fileID: 0}
-    - target: {fileID: 8389465640549306180, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_Name
-      value: CoffeeMakingTime
-      objectReference: {fileID: 0}
-    - target: {fileID: 8389465640549306180, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8582008911521151626, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8582008911521151626, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7531982556573448961, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-    - {fileID: 4614385252884626303, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
 --- !u!1 &1056055234
 GameObject:
   m_ObjectHideFlags: 0
@@ -10580,10 +10482,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3ee3cfd645fa648bfd3d537328cf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cookingTime: {fileID: 613651989}
   firstButton: {fileID: 1888188606}
   secondButton: {fileID: 1077002917}
   thirdButton: {fileID: 866914594}
+  cookingDuration: 0
   chocolateCupcake: {fileID: 280360025}
   cherryCupcake: {fileID: 783255495}
   oreoCupcake: {fileID: 1629604692}
@@ -15349,11 +15251,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &1516219357 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8389465640549306180, guid: e2193d33b6affea41a3fba83a67cb008, type: 3}
-  m_PrefabInstance: {fileID: 1055557296}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1519935075
 GameObject:
   m_ObjectHideFlags: 0
@@ -15461,8 +15358,9 @@ MonoBehaviour:
   coffeeButton: {fileID: 684710914}
   sugarButton: {fileID: 453271008}
   milkButton: {fileID: 497016597}
-  cookingTime: {fileID: 1516219357}
   shopButton: {fileID: 1695201675}
+  cashRegisterHiding: {fileID: 1874372530}
+  espressoMachineHiding: {fileID: 874716653}
   cupBoarNarrowHiding: {fileID: 1686062585}
   cupBoar01Hiding: {fileID: 1850352013}
   cupBoar02Hiding: {fileID: 179043927}
@@ -16281,7 +16179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1631813351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16435,8 +16333,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -60, y: 250}
-  m_SizeDelta: {x: 1145, y: 345}
+  m_AnchoredPosition: {x: 100, y: 250}
+  m_SizeDelta: {x: 900, y: 345}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1660559283
 MonoBehaviour:
@@ -17803,16 +17701,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cupBoadCorner: {fileID: 1756629706540644, guid: 2c04cf954647e43589c56b0df4058564, type: 3}
-  espressoMachine: {fileID: 1089298806083518, guid: a0634ab2a98bd4b78af017c116badda5, type: 3}
+  espressoMachine: {fileID: 7575293152059053558, guid: 6c0a25609d75fe44d86d549483835437, type: 3}
   cashRegister: {fileID: 2217945348265329407, guid: 205f82ba78a9f8f479a887f13b93c62f, type: 3}
   cupBoardNarrow: {fileID: 1744688946905724, guid: b8c3087888fc448acb63e643fea215d3, type: 3}
   cupBoard01: {fileID: 1833518589062062, guid: 31264236aa69f49fba6ca492242bd217, type: 3}
   cupBoard02: {fileID: 1757435590285774, guid: af9cdd9ba10234507875bb32ff50333b, type: 3}
-  stove: {fileID: 1284846768158662, guid: 2bb858b872f0f4fb89e1d1263c276480, type: 3}
+  stove: {fileID: 8231706078346399823, guid: 16f3fbc980a68d94db38ff0de6dd1f37, type: 3}
   latte: {fileID: 974524968}
   chocolateCupcake: {fileID: 280360030}
   cherryCupcake: {fileID: 783255500}
   oreoCupcake: {fileID: 1629604697}
+  selectedMachine: {fileID: 0}
   espressoMachines: []
   stoves: []
 --- !u!1 &1787767469
@@ -19325,7 +19224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d72db7d21e6013438964a63bf9f2e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customerPrefab: {fileID: 6792327054025522797, guid: 64db8d48fab1ceb43a8ee5d52643029a, type: 3}
+  customerPrefab: {fileID: 2916486913691104272, guid: 3c0b66c1fb55cd34994e034186a852c1, type: 3}
   spawnPoint: {fileID: 1029078830}
   spawnInterval: 10
 --- !u!4 &1978981903
@@ -19376,7 +19275,7 @@ RectTransform:
   m_Father: {fileID: 1736769787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 4.5200195, y: 0}
   m_SizeDelta: {x: 0.9598, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21812,7 +21711,6 @@ SceneRoots:
   - {fileID: 452237849}
   - {fileID: 776741286}
   - {fileID: 1309647393}
-  - {fileID: 1055557296}
   - {fileID: 727509351}
   - {fileID: 515700739}
   - {fileID: 1240906377}

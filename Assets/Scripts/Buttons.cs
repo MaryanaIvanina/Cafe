@@ -68,11 +68,13 @@ public class Buttons : MonoBehaviour
     public void OnEspressoMachineClick() 
     { 
         ShopManager.instance.price = 50; 
+        UIManager.instance.espressoMachineHiding.SetActive(true);
         ShopManager.instance.Buy(ObjectManager.instance.espressoMachine); 
     }
     public void OnCashRegisterClick() 
     { 
         ShopManager.instance.price = 50; 
+        UIManager.instance.cashRegisterHiding.SetActive(true);
         ShopManager.instance.Buy(ObjectManager.instance.cashRegister); 
     }
     public void OnCupBoardNarrowClick() { 
@@ -91,6 +93,7 @@ public class Buttons : MonoBehaviour
     public void OnStoveClick() 
     { 
         ShopManager.instance.price = 500; 
+        if (Score.Instance.level == 3) UIManager.instance.stoveHiding.SetActive(true);
         ShopManager.instance.Buy(ObjectManager.instance.stove); 
     }
     public void OnNextLevelClick()
