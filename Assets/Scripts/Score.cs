@@ -11,12 +11,21 @@ public class Score : MonoBehaviour
     private int neededScore = 10;
     public int level = 1;
     private int reward = 100;
+    private bool loadedFromSave = false;
+
     public static Score Instance;
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
+
+    private void Start()
+    {
+        if (!loadedFromSave)
+            ApplyLevelState();
+    }
+
     private void Update()
     {
         if (score == neededScore)
@@ -50,8 +59,8 @@ public class Score : MonoBehaviour
     public void SetLevel(int value)
     {
         level = value;
-        UpdateUI();
-        ApplyLevelState(); 
+        loadedFromSave = true;
+        ApplyLevelState();
     }
 
     public void ApplyLevelState()

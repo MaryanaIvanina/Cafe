@@ -30,6 +30,10 @@ public class SaveManager : MonoBehaviour
 
         FullPath = Path.Combine(Application.persistentDataPath, fileName);
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
         Load();
     }
 
@@ -65,6 +69,11 @@ public class SaveManager : MonoBehaviour
             Quaternion r = p.transform.rotation;
             pod.rx = r.x; pod.ry = r.y; pod.rz = r.z; pod.rw = r.w;
             pod.active = p.gameObject.activeSelf;
+            IsBusy isBusy = p.GetComponent<IsBusy>();
+            if (isBusy == null)
+                pod.isBusy = false;
+            else
+                pod.isBusy = p.GetComponent<IsBusy>().isBusy;
             sd.purchasedObjects.Add(pod);
         }
 
@@ -96,7 +105,7 @@ public class SaveManager : MonoBehaviour
             if (Score.Instance != null)
             {
                 Score.Instance.SetScore(sd.score);
-                Score.Instance.SetLevel(sd.level); // applies level state
+                Score.Instance.SetLevel(sd.level); 
             }
 
             if (inventoryManager != null)
@@ -123,11 +132,17 @@ public class SaveManager : MonoBehaviour
                     {
                         found.transform.position = new Vector3(pod.px, pod.py, pod.pz);
                         found.transform.rotation = new Quaternion(pod.rx, pod.ry, pod.rz, pod.rw);
+                        if (pod.isBusy)
+                        {
+                            var timer = found.GetComponent<TimerActivator>().cookingTimer;
+                            timer.GetReady();
+                            timer.gameObject.SetActive(true);
+                        }
+
                         found.gameObject.SetActive(pod.active);
                     }
                     else
                     {
-                        // instantiate prefab by id
                         var prefabEntry = purchasablePrefabs.Find(pe => pe.id == pod.id);
                         if (prefabEntry != null && prefabEntry.prefab != null)
                         {
@@ -198,6 +213,7 @@ public class SaveManager : MonoBehaviour
         public float px, py, pz;
         public float rx, ry, rz, rw;
         public bool active;
+        public bool isBusy;
     }
     #endregion
 }

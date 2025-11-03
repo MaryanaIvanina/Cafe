@@ -3707,9 +3707,9 @@ MonoBehaviour:
     prefab: {fileID: 1833518589062062, guid: 31264236aa69f49fba6ca492242bd217, type: 3}
   - id: cupBoard2
     prefab: {fileID: 1757435590285774, guid: af9cdd9ba10234507875bb32ff50333b, type: 3}
-  - id: cupBoardCorner
+  - id: cupboardCorner
     prefab: {fileID: 1756629706540644, guid: 2c04cf954647e43589c56b0df4058564, type: 3}
-  - id: cupBoardNarrow
+  - id: cupboardNarrow
     prefab: {fileID: 1744688946905724, guid: b8c3087888fc448acb63e643fea215d3, type: 3}
   - id: espressoMachine
     prefab: {fileID: 1089298806083518, guid: a0634ab2a98bd4b78af017c116badda5, type: 3}
@@ -16179,7 +16179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1631813351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19275,7 +19275,7 @@ RectTransform:
   m_Father: {fileID: 1736769787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 4.5200195, y: 0}
   m_SizeDelta: {x: 0.9598, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

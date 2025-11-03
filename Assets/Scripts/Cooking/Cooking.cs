@@ -124,9 +124,11 @@ public abstract class Cooking : MonoBehaviour
     }
     protected void StartCooking(GameObject machine)
     {
-        machine.GetComponent<TimerActivator>().cookingTimer.gameObject.SetActive(true);
-        machine.GetComponent<TimerActivator>().cookingTimer.GetReady();
+        var timer = machine.GetComponent<TimerActivator>().cookingTimer;
+        timer.GetReady(); 
+        timer.gameObject.SetActive(true);
     }
+
     IEnumerator Cook(float cookingDuration, GameObject machine)
     {
         while (!machine.GetComponent<TimerActivator>().cookingTimer.isLoadFinished)

@@ -7,7 +7,7 @@ public class CookingTimer : MonoBehaviour
 {
     [SerializeField] private Slider cookingTime;
     private float progress;
-    public bool isLoadFinished { get; private set; }
+    public bool isLoadFinished { get; private set; } = false;
     public void GetReady()
     {
         progress = 0f;
